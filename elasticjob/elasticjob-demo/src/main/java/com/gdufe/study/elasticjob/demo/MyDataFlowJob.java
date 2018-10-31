@@ -1,9 +1,3 @@
-/**
- * @(#)MyDataFlowJob.java, 2018/10/17.
- * <p/>
- * Copyright 2018 Netease, Inc. All rights reserved.
- * NETEASE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- */
 package com.gdufe.study.elasticjob.demo;
 
 import java.util.List;
@@ -12,7 +6,7 @@ import com.dangdang.ddframe.job.api.ShardingContext;
 import com.dangdang.ddframe.job.api.dataflow.DataflowJob;
 
 /**
- * @author: laichengfeng (laichengfeng @ corp.netease.com)
+ * @author: laichengfeng
  * @description: 处理数据流工作
  * @Date: 2018/10/17 14:58
  */

@@ -1,9 +1,3 @@
-/**
- * @(#)ElasticjobConfig.java, 2018/10/24.
- * <p/>
- * Copyright 2018 Netease, Inc. All rights reserved.
- * NETEASE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- */
 package com.gdufe.study.elasticjobspringbootdemo;
 
 import lombok.Data;
@@ -20,7 +14,7 @@ import com.dangdang.ddframe.job.reg.zookeeper.ZookeeperRegistryCenter;
 import com.zaxxer.hikari.HikariDataSource;
 
 /**
- * @author: laichengfeng (laichengfeng @ corp.netease.com)
+ * @author: laichengfeng
  * @description:
  * @Date: 2018/10/24 11:38
  */

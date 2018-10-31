@@ -1,9 +1,3 @@
-/**
- * @(#)IteratorTests.java, 2018/10/23.
- * <p/>
- * Copyright 2018 Netease, Inc. All rights reserved.
- * NETEASE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- */
 package com.gdufe.study.flink.demo;
 
 import org.apache.flink.api.common.functions.FilterFunction;
@@ -13,7 +7,7 @@ import org.apache.flink.streaming.api.datastream.IterativeStream;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 
 /**
- * @author: laichengfeng (laichengfeng @ corp.netease.com)
+ * @author: laichengfeng
  * @description:
  * @Date: 2018/10/23 17:34
  */

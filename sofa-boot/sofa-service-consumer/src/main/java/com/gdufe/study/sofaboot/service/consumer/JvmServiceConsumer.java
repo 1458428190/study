@@ -1,14 +1,5 @@
-/**
- * @(#)JvmServiceAnnotationConsumer.java, 2018/10/10.
- * <p/>
- * Copyright 2018 Netease, Inc. All rights reserved.
- * NETEASE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- */
 package com.gdufe.study.sofaboot.service.consumer;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
-import com.alipay.sofa.runtime.api.annotation.SofaReference;
 import com.alipay.sofa.runtime.api.aware.ClientFactoryAware;
 import com.alipay.sofa.runtime.api.client.ClientFactory;
 import com.alipay.sofa.runtime.api.client.ReferenceClient;
@@ -16,7 +7,7 @@ import com.alipay.sofa.runtime.api.client.param.ReferenceParam;
 import com.gdufe.study.sofaboot.service.facade.SampleJvmService;
 
 /**
- * @author: laichengfeng (laichengfeng @ corp.netease.com)
+ * @author: laichengfeng
  * @description: JVM引用服务, 注解方式
  * @Date: 2018/10/10 15:24
  */

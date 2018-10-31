@@ -1,9 +1,3 @@
-/**
- * @(#)ApplitationRun.java, 2018/10/10.
- * <p/>
- * Copyright 2018 Netease, Inc. All rights reserved.
- * NETEASE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- */
 package com.gdufe.study.sofaboot.service.run;
 
 import org.springframework.boot.SpringApplication;

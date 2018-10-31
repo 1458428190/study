@@ -1,9 +1,3 @@
-/**
- * @(#)WindowWordCount.java, 2018/10/23.
- * <p/>
- * Copyright 2018 Netease, Inc. All rights reserved.
- * NETEASE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- */
 package com.gdufe.study.flink.demo;
 
 import scala.Tuple2;
@@ -14,7 +8,7 @@ import org.apache.flink.streaming.api.windowing.time.Time;
 import org.apache.flink.util.Collector;
 
 /**
- * @author: laichengfeng (laichengfeng @ corp.netease.com)
+ * @author: laichengfeng
  * @description: 使用flink做字数统计
  * @Date: 2018/10/23 16:58
  */
