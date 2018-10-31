@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:sofa="http://sofastack.io/schema/sofaboot"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://sofastack.io/schema/sofaboot http://sofastack.io/schema/sofaboot.xsd"
+       default-autowire="byName">
+
+    <!-- xml 方式 -->
+    <bean id="sampleJvmService" class="com.gdufe.study.sofaboot.service.provider.SampleJvmServiceImpl">
+        <property name="message" value="Hello, laichengfeng, jvm service xml implementation."/>
+    </bean>
+
+    <sofa:service ref="sampleJvmService" interface="com.gdufe.study.sofaboot.service.facade.SampleJvmService">
+        <sofa:binding.jvm/>
+    </sofa:service>
+
+    <!-- 注解方式 -->
+    <bean id="sampleJvmServiceAnnotation" class="com.gdufe.study.sofaboot.service.provider.SampleJvmServiceAnnotationImpl" />
+
+    <!-- API方式 指定初始方法 -->
+    <bean id="publishServiceWithClient" class="com.gdufe.study.sofaboot.service.provider.PublishServiceWithClient" init-method="init"/>
+</beans>
