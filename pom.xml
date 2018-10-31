@@ -12,6 +12,7 @@
         <module>sofa-boot</module>
         <module>elasticjob</module>
         <module>flink</module>
+        <module>xxl-job</module>
     </modules>
 
     <properties>

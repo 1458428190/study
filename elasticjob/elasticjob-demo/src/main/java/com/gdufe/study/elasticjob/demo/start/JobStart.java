@@ -10,7 +10,7 @@ import com.dangdang.ddframe.job.reg.zookeeper.ZookeeperRegistryCenter;
 import com.gdufe.study.elasticjob.demo.MySimpleJob;
 
 /**
- * @author: laichengfeng (laichengfeng @ corp.netease.com)
+ * @author: laichengfeng
  * @description:
  * @Date: 2018/10/17 15:04
  */
