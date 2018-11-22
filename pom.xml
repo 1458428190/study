@@ -14,6 +14,7 @@
         <module>flink</module>
         <module>xxl-job</module>
         <module>zookeeper</module>
+        <module>docker</module>
     </modules>
 
     <properties>
