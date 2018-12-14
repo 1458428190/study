@@ -175,10 +175,10 @@ public class HttpUtils {
     public static void main(String[] args) throws HttpException {
 //        String url = "http://58.62.247.115";
 //        Map<String, Object> params = new HashMap<>();
-//        params.put("DDDDD", "15251102120");
-//        params.put("upass", "311311311");
-//        params.put("0MKKey", "%B5%C7%C2%BC+Login");
-//        params.put("Submit", "%E7%99%BB%E9%99%86");
+//        params.put("DDDDD", "15*********");
+//        params.put("upass", "**********");
+//        params.put("0MKKey", "**********");
+//        params.put("Submit", "**********");
 //        Map<String, Object> headers = new HashMap<>();
 ////        headers.put("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36");
 ////        headers.put("Host", "58.62.247.115");
