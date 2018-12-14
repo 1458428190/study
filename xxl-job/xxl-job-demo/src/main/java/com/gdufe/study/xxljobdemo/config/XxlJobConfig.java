@@ -15,7 +15,7 @@ import com.xxl.job.core.executor.XxlJobExecutor;
  * @author xuxueli 2017-04-28
  */
 @Configuration
-@ComponentScan(basePackages = "com.gdufe.study.xxljobdemo.jobhandler")
+@ComponentScan(basePackages = "com.service.study.xxljobdemo.jobhandler")
 public class XxlJobConfig {
     private Logger logger = LoggerFactory.getLogger(XxlJobConfig.class);
 

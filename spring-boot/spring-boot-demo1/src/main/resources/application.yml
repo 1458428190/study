@@ -1,0 +1,13 @@
+spring:
+  main:
+    banner-mode: console
+logging:
+  file: E:/IntellijIDEA/webProject/study/spring-boot/spring-boot-demo1/test.log
+#  group:
+#    tomcat:
+#      - org.apache.catalina
+#      - org.apache.coyote
+#      - org.apache.tomcat
+#  level:
+#    tomcat: TRACE
+
