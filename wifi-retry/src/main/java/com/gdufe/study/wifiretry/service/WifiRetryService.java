@@ -4,6 +4,8 @@ import com.gdufe.study.wifiretry.utils.http.HttpUtils;
 import com.gdufe.study.wifiretry.utils.http.NetState;
 import org.apache.http.HttpException;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,6 +15,8 @@ import java.util.Map;
  * @Date: 2018/12/13 16:09
  */
 public class WifiRetryService {
+
+    private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     /**
      * 学号
@@ -50,7 +54,7 @@ public class WifiRetryService {
      * 尝试登陆黑科技
      */
     public void retryLogin() {
-        System.out.println("尝试登陆GDUFE黑科技");
+        System.out.println(simpleDateFormat.format(new Date()) + " 尝试登陆GDUFE黑科技");
         String url = "http://58.62.247.115/";
         Map<String, Object> params = new HashMap<>();
         params.put("DDDDD", user);
@@ -81,7 +85,7 @@ public class WifiRetryService {
      * 连接GDUFE wifi
      */
     public Boolean wifiConnect() {
-        System.out.println("尝试连接WIFI");
+        System.out.println(simpleDateFormat.format(new Date()) + " 尝试连接WIFI");
         String connWifiResult = NetState.connectWifi(wifiName, null);
         if(connWifiResult.contains("成功")) {
             System.out.println("连接成功！");
@@ -106,19 +110,31 @@ public class WifiRetryService {
         // 无网
         boolean isConnect = NetState.isConnect();
         if(!isConnect) {
-            System.out.println("--------shit, 没网，第"+ (++retryCount) + "次重连--------");
+            System.out.println(simpleDateFormat.format(new Date()) + " --------shit, 没网，第"+ (++retryCount) + "次重连--------");
+            long startTime = System.currentTimeMillis();
             boolean isConnectWifi = isConnectWifi();
             // 没有连接wifi
             if(!isConnectWifi) {
-                System.out.println("----wifi已断开----");
+                System.out.println(simpleDateFormat.format(new Date()) + "----wifi已断开----");
                 wifiConnect();
                 Thread.sleep(wifiTime);
             }
             isConnectWifi = isConnectWifi();
+            if(!isConnectWifi) {
+                System.out.println("wifi还在开启中，请稍后~~~");
+                Thread.sleep((wifiTime<<1) - (wifiTime>>1));
+            }
             isConnect = NetState.isConnect();
             // 双重判断，减少网络请求
-            if(isConnectWifi && !isConnect) {
+            if(isConnectWifi() && !isConnect) {
                 retryLogin();
+            }
+            long endTime = System.currentTimeMillis();
+            Thread.sleep(1000L);
+            if(NetState.isConnect()) {
+                System.out.println("----重连成功，耗时 " + (endTime - startTime) +"ms----\r\n");
+            } else {
+                System.out.println("--重连失败，耗时 " + (endTime - startTime) +"ms--\r\n");
             }
         }
     }

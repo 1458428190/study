@@ -23,7 +23,7 @@ public class NetState {
      * 连接指定wifi
      * @param wifiName
      *      wifi名
-     * @param ssid
+     * @param key
      *      密码
      * @return
      */
@@ -65,7 +65,7 @@ public class NetState {
         }
     }
 
-    public static void main(String[] args)  {
+    public static void main(String[] args) throws HttpException {
 ////        System.out.println(NetState.isConnect());
 //        int t = 1;
 ////        while(t-- > 0) {
@@ -78,7 +78,6 @@ public class NetState {
             long startTime = System.currentTimeMillis();
             System.out.println(isConnect());
             long endTime = System.currentTimeMillis();
-            System.out.println("time-"+ t + " : "+ (endTime - startTime));
             sum += (endTime - startTime);
         }
         System.out.println(sum);
