@@ -6,7 +6,7 @@ import java.util.Properties;
 
 /**
  * @Author: laichengfeng
- * @Description: Java执行CMD命令
+ * @Description: 执行CMD命令工具
  * @Date: 2018/12/13 15:50
  */
 public class CmdUtils {

@@ -9,19 +9,34 @@ import java.util.Map;
 
 /**
  * @Author: laichengfeng
- * @Description: 图书馆wifi重试代码
+ * @Description: 图书馆wifi重试服务
  * @Date: 2018/12/13 16:09
  */
 public class WifiRetryService {
 
+    /**
+     * 学号
+     */
     private String user;
 
+    /**
+     * 密码
+     */
     private String password;
 
+    /**
+     * wifi名
+     */
     private String wifiName;
 
+    /**
+     * wifi连接时间
+     */
     private int wifiTime;
 
+    /**
+     * 重试次数
+     */
     private int retryCount = 0;
 
     public WifiRetryService(String user, String password, String wifiName, int wifiTime) {
@@ -42,7 +57,6 @@ public class WifiRetryService {
         params.put("upass", password);
         params.put("0MKKey", "%B5%C7%C2%BC+Login");
         params.put("Submit", "%E7%99%BB%E9%99%86");
-
 
         Map<String, Object> headers = new HashMap<>();
         headers.put("Content-Type", "application/x-www-form-urlencoded");
@@ -102,6 +116,7 @@ public class WifiRetryService {
             }
             isConnectWifi = isConnectWifi();
             isConnect = NetState.isConnect();
+            // 双重判断，减少网络请求
             if(isConnectWifi && !isConnect) {
                 retryLogin();
             }
@@ -109,7 +124,7 @@ public class WifiRetryService {
     }
 
     public static void main(String[] args) {
-        WifiRetryService wifiRetryService = new WifiRetryService("1525112","1","GDUFE", 2000);
+        WifiRetryService wifiRetryService = new WifiRetryService("****","****","GDUFE", 2000);
         int t = 20;
         int sum = 0;
         while(t -- > 0) {

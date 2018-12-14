@@ -45,6 +45,7 @@ public class NetState {
     }
 
     public static boolean isConnect(){
+          // 速度太慢，已弃用 （平均每次判断需要3秒以上）
 //        String sb = CmdUtils.CMD("ping www.baidu.com");
 //        if (StringUtils.isNotBlank(sb)) {
 //            if (sb.indexOf("TTL") > 0) {
@@ -55,6 +56,7 @@ public class NetState {
 //                connect = false;
 //            }
 //        }
+        // 毫秒级判断
         try {
             String content = HttpUtils.get("http://www.baidu.com", null);
             return StringUtils.contains(content, "百度");

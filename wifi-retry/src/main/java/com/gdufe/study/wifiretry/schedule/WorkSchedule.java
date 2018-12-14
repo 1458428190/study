@@ -6,10 +6,11 @@ import org.springframework.scheduling.annotation.Scheduled;
 
 /**
  * @Author: laichengfeng
- * @Description:
+ * @Description: 定时任务，已舍弃
  * @Date: 2018/12/13 20:25
  */
 //@Component
+@Deprecated
 public class WorkSchedule {
 
     @Autowired
