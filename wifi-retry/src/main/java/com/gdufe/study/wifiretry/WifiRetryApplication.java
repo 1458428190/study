@@ -25,15 +25,18 @@ public class WifiRetryApplication {
         System.out.println("config path:  " + propertiesPath);
         String user = properties.getProperty("user");
         String password = properties.getProperty("password");
-        String sleepTime = properties.getProperty("sleep_time");
+        String retrySleepTime = properties.getProperty("retry_sleep_time");
         String wifiName = properties.getProperty("wifi_name");
-        int wifiTime = Integer.parseInt(properties.getProperty("wifi_time"));
+        int wifiSpinTime = Integer.parseInt(properties.getProperty("wifi_spin_time"));
+        int wifiSpinCount = Integer.parseInt(properties.getProperty("wifi_spin_count"));
+        int successSleepTime = Integer.parseInt(properties.getProperty("success_sleep_time"));
         fis.close();
-        System.out.println(user + " " + wifiName + " " + sleepTime + " " + wifiTime + "\r\n");
-        WifiRetryService wifiRetryService = new WifiRetryService(user, password, wifiName, wifiTime);
+        System.out.println(user + " " + wifiName + " " + retrySleepTime + " " + wifiSpinTime + " "
+                + wifiSpinCount + " " + successSleepTime + "\r\n");
+        WifiRetryService wifiRetryService = new WifiRetryService(user, password, wifiName, wifiSpinTime, wifiSpinCount, successSleepTime);
         while(true) {
             wifiRetryService.retryGdufeWifi();
-            Thread.sleep(Long.parseLong(sleepTime));
+            Thread.sleep(Long.parseLong(retrySleepTime));
         }
     }
 }

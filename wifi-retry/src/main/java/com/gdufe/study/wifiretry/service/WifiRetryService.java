@@ -34,26 +34,38 @@ public class WifiRetryService {
     private String wifiName;
 
     /**
-     * wifi连接时间
+     * wifi连接自旋等待时间
      */
-    private int wifiTime;
+    private int wifiSpinTime;
+
+    /**
+     * wifi连接自旋次数
+     */
+    private int wifiSpinCount;
 
     /**
      * 重试次数
      */
     private int retryCount = 0;
 
-    public WifiRetryService(String user, String password, String wifiName, int wifiTime) {
+    /**
+     * 登陆成功后休息时间
+     */
+    private int successSleepTime;
+
+    public WifiRetryService(String user, String password, String wifiName, int wifiSpinTime, int wifiSpinCount, int successSleepTime) {
         this.user = user;
         this.password = password;
         this.wifiName = wifiName;
-        this.wifiTime = wifiTime;
+        this.wifiSpinTime = wifiSpinTime;
+        this.successSleepTime = successSleepTime;
+        this.wifiSpinCount = wifiSpinCount;
     }
 
     /**
      * 尝试登陆黑科技
      */
-    public void retryLogin() {
+    public boolean retryLogin() {
         System.out.println(simpleDateFormat.format(new Date()) + " 尝试登陆GDUFE黑科技");
         String url = "http://58.62.247.115/";
         Map<String, Object> params = new HashMap<>();
@@ -71,6 +83,7 @@ public class WifiRetryService {
             String post = HttpUtils.post(url, params, headers);
             if (post.contains("认证成功")) {
                 System.out.println("登陆成功！");
+                return true;
             } else if(post.contains("信息页")) {
                 System.out.println("学号或密码错误，请检查！");
             } else{
@@ -79,6 +92,7 @@ public class WifiRetryService {
         } catch (Exception e) {
             System.out.println("登陆异常！请检查！");
         }
+        return false;
     }
 
     /**
@@ -113,34 +127,39 @@ public class WifiRetryService {
             System.out.println(simpleDateFormat.format(new Date()) + " --------shit, 没网，第"+ (++retryCount) + "次重连--------");
             long startTime = System.currentTimeMillis();
             boolean isConnectWifi = isConnectWifi();
+            boolean isRetrySuccess = true;
             // 没有连接wifi
             if(!isConnectWifi) {
                 System.out.println(simpleDateFormat.format(new Date()) + "----wifi已断开----");
-                wifiConnect();
-                Thread.sleep(wifiTime);
+                if(!wifiConnect()) {
+                    return;
+                }
             }
-            isConnectWifi = isConnectWifi();
-            if(!isConnectWifi) {
-                System.out.println("wifi还在开启中，请稍后~~~");
-                Thread.sleep((wifiTime<<1) - (wifiTime>>1));
+            // 自旋锁等待
+            int spinCount = 0;
+            while(!isConnectWifi()) {
+                if((++spinCount) > wifiSpinCount) {
+                    System.out.println("----wifi连接已超过自旋次数，仍未连接到wifi，稍后自动重试----");
+                    return;
+                }
+                Thread.sleep(wifiSpinTime);
             }
-            isConnect = NetState.isConnect();
-            // 双重判断，减少网络请求
-            if(isConnectWifi() && !isConnect) {
-                retryLogin();
+            if(!NetState.isConnect()) {
+                isRetrySuccess = retryLogin();
             }
             long endTime = System.currentTimeMillis();
-            Thread.sleep(1000L);
-            if(NetState.isConnect()) {
+            if(isRetrySuccess) {
                 System.out.println("----重连成功，耗时 " + (endTime - startTime) +"ms----\r\n");
-            } else {
+                Thread.sleep(successSleepTime);
+            } else if(!NetState.isConnect()){
                 System.out.println("--重连失败，耗时 " + (endTime - startTime) +"ms--\r\n");
             }
         }
     }
 
     public static void main(String[] args) {
-        WifiRetryService wifiRetryService = new WifiRetryService("****","****","GDUFE", 2000);
+        WifiRetryService wifiRetryService = new WifiRetryService("****","****",
+                "GDUFE", 2000, 2000, 2000);
         int t = 20;
         int sum = 0;
         while(t -- > 0) {

@@ -30,11 +30,11 @@ public class HttpUtils {
 
     private static final Logger logger = LoggerFactory.getLogger(HttpUtils.class);
 
-    private static final int CONNECTION_TIMEOUT = 2000;
+    private static final int CONNECTION_TIMEOUT = 3000;
 
-    private static final int SOKCET_TIMEOUT = 2000;
+    private static final int SOKCET_TIMEOUT = 3000;
 
-    private static final int CONNECTION_REQUEST_TIMEOUT = 2000;
+    private static final int CONNECTION_REQUEST_TIMEOUT = 3000;
 
     private static CloseableHttpClient httpClient = HttpClients.createDefault();
 
