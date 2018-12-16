@@ -2,6 +2,7 @@ package com.gdufe.study.wifiretry.service;
 
 import com.gdufe.study.wifiretry.utils.http.HttpUtils;
 import com.gdufe.study.wifiretry.utils.http.NetState;
+import org.apache.commons.lang.StringUtils;
 import org.apache.http.HttpException;
 
 import java.text.SimpleDateFormat;
@@ -118,7 +119,7 @@ public class WifiRetryService {
     }
 
     /**
-     * 无网络时重连
+     * 无网络时重连 （支持网线）
      */
     public void retryGdufeWifi() throws HttpException, InterruptedException {
         // 无网
@@ -126,25 +127,31 @@ public class WifiRetryService {
         if(!isConnect) {
             System.out.println(simpleDateFormat.format(new Date()) + " --------shit, 没网，第"+ (++retryCount) + "次重连--------");
             long startTime = System.currentTimeMillis();
-            boolean isConnectWifi = isConnectWifi();
+            boolean isConnectWifi = false;
             boolean isRetrySuccess = true;
-            // 没有连接wifi
-            if(!isConnectWifi) {
-                System.out.println(simpleDateFormat.format(new Date()) + "----wifi已断开----");
-                if(!wifiConnect()) {
-                    return;
+            // 指定连接wifi
+            if(!StringUtils.isBlank(wifiName)) {
+                isConnectWifi = isConnectWifi();
+                // 没有连接wifi
+                if(!isConnectWifi) {
+                    System.out.println(simpleDateFormat.format(new Date()) + "----wifi已断开----");
+                    long wifiConnectBeginTime = System.currentTimeMillis();
+                    if(!wifiConnect()) {
+                        return;
+                    }
+                    // 自旋锁等待
+                    int spinCount = 0;
+                    while(!isConnectWifi()) {
+                        if((++spinCount) > wifiSpinCount) {
+                            System.out.println("----wifi连接已超过自旋次数，仍未连接到wifi，稍后自动重试----");
+                            return;
+                        }
+                        Thread.sleep(wifiSpinTime);
+                    }
+                    System.out.println("---wifi连接耗时：" + (System.currentTimeMillis() - wifiConnectBeginTime) + " ms---");
                 }
             }
-            // 自旋锁等待
-            int spinCount = 0;
-            while(!isConnectWifi()) {
-                if((++spinCount) > wifiSpinCount) {
-                    System.out.println("----wifi连接已超过自旋次数，仍未连接到wifi，稍后自动重试----");
-                    return;
-                }
-                Thread.sleep(wifiSpinTime);
-            }
-            if(!NetState.isConnect()) {
+            if(StringUtils.isBlank(wifiName) || !NetState.isConnect()) {
                 isRetrySuccess = retryLogin();
             }
             long endTime = System.currentTimeMillis();
@@ -158,17 +165,6 @@ public class WifiRetryService {
     }
 
     public static void main(String[] args) {
-        WifiRetryService wifiRetryService = new WifiRetryService("****","****",
-                "GDUFE", 2000, 2000, 2000);
-        int t = 20;
-        int sum = 0;
-        while(t -- > 0) {
-            long startTime = System.currentTimeMillis();
-            System.out.println(wifiRetryService.wifiConnect());
-            long endTime = System.currentTimeMillis();
-            System.out.println("time-"+ t + " : "+ (endTime - startTime));
-            sum += (endTime - startTime);
-        }
-        System.out.println(sum);
+        System.out.println(NetState.isConnect());
     }
 }

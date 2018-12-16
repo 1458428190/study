@@ -16,10 +16,8 @@ public class WifiRetryApplication {
         System.out.println("\r\n\r\n\r\n------------------------Code written by laichengfeng------------------------\r\n\r\n\r\n");
         SpringApplication.run(WifiRetryApplication.class, args);
         Properties properties = new Properties();
-//        String filePath = "C:\\Users\\{username}\\Desktop\\wifi-retry\\application.properties";
         // 由于后续要转成exe，方便使用和配置（故配置的读取换成了此方式）
-        String filePath = args[0];
-        String propertiesPath = filePath.replace("{username}", System.getProperty("user.name"));
+        String propertiesPath = System.getProperty("user.dir") + "\\config.properties";
         FileInputStream fis = new FileInputStream(propertiesPath);
         properties.load(fis);
         System.out.println("config path:  " + propertiesPath);

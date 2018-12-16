@@ -1,6 +1,11 @@
 package com.gdufe.study.wifiretry.utils;
 
-import java.io.*;
+import org.apache.commons.lang.StringUtils;
+
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.nio.charset.Charset;
 import java.util.Properties;
 
@@ -33,19 +38,18 @@ public class CmdUtils {
             return sb.toString();
         } catch (IOException e) {
             // TODO 异常处理
+            e.printStackTrace();
             return null;
         }
     }
 
     public static void main(String[] args) throws IOException {
+        //System.out.println(CmdUtils.CMD("echo %~f0"));
+//        System.out.println(System.getProperty("user.dir"));
         Properties properties = new Properties();
-        String property = System.getProperty("user.name");
-        System.out.println(property);
-        properties.load(new FileInputStream("C:\\Users\\{username}\\Desktop\\wifi-retry\\application.properties"));
-        String user = properties.getProperty("user");
-        String password = properties.getProperty("password");
-        String sleepTime = properties.getProperty("sleep_time");
+        properties.load(new FileInputStream("C:\\Users\\赖程锋\\Desktop\\wifi-retry\\config.properties"));
         String wifiName = properties.getProperty("wifi_name");
-        System.out.println(user + "  " + password + " " + wifiName + "" + sleepTime);
+        System.out.println(StringUtils.isBlank(wifiName));
+
     }
 }
