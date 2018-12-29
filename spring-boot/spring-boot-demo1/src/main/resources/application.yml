@@ -1,8 +1,10 @@
 spring:
   main:
     banner-mode: console
-logging:
-  file: E:/IntellijIDEA/webProject/study/spring-boot/spring-boot-demo1/test.log
+
+
+#logging:
+#  file: E:/IntellijIDEA/webProject/study/spring-boot/spring-boot-demo1/test.log
 #  group:
 #    tomcat:
 #      - org.apache.catalina
