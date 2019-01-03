@@ -19,6 +19,7 @@
         <module>password-study</module>
         <module>common-utils</module>
         <module>kafka</module>
+        <module>dubbo</module>
     </modules>
 
     <properties>
