@@ -14,7 +14,6 @@
         <module>flink</module>
         <module>xxl-job</module>
         <module>zookeeper</module>
-        <module>docker</module>
         <module>spring-boot</module>
         <module>password-study</module>
         <module>common-utils</module>
