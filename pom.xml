@@ -19,6 +19,7 @@
         <module>common-utils</module>
         <module>kafka</module>
         <module>dubbo</module>
+        <module>spring-data</module>
     </modules>
 
     <properties>
