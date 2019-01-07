@@ -1,0 +1,81 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.atguigu.mapper.mbg</groupId>
+	<artifactId>Pro02MapperMBG</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+
+	<properties>
+		<!-- ${basedir}引用工程根目录 -->
+		<!-- targetJavaProject：声明存放源码的目录位置 -->
+		<targetJavaProject>${basedir}/src/main/java</targetJavaProject>
+
+		<!-- targetMapperPackage：声明MBG生成XxxMapper接口后存放的package位置 -->
+		<targetMapperPackage>com.atguigu.shop.mappers</targetMapperPackage>
+
+		<!-- targetModelPackage：声明MBG生成实体类后存放的package位置 -->
+		<targetModelPackage>com.atguigu.shop.entities</targetModelPackage>
+
+		<!-- targetResourcesProject：声明存放资源文件和XML配置文件的目录位置 -->
+		<targetResourcesProject>${basedir}/src/main/resources</targetResourcesProject>
+
+		<!-- targetXMLPackage：声明存放具体XxxMapper.xml文件的目录位置 -->
+		<targetXMLPackage>mappers</targetXMLPackage>
+
+		<!-- 通用Mapper的版本号 -->
+		<mapper.version>4.0.0-beta3</mapper.version>
+
+		<!-- MySQL驱动版本号 -->
+		<mysql.version>5.1.37</mysql.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>tk.mybatis</groupId>
+			<artifactId>mapper</artifactId>
+			<version>4.0.0-beta3</version>
+		</dependency>
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis</artifactId>
+			<version>3.2.8</version>
+		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>${mysql.version}</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.mybatis.generator</groupId>
+				<artifactId>mybatis-generator-maven-plugin</artifactId>
+				<version>1.3.2</version>
+
+				<!-- 配置generatorConfig.xml配置文件的路径 -->
+				<configuration>
+					<configurationFile>${basedir}/src/main/resources/generator/generatorConfig.xml</configurationFile>
+					<overwrite>true</overwrite>
+					<verbose>true</verbose>
+				</configuration>
+
+				<!-- MBG插件的依赖信息 -->
+				<dependencies>
+					<dependency>
+						<groupId>mysql</groupId>
+						<artifactId>mysql-connector-java</artifactId>
+						<version>${mysql.version}</version>
+					</dependency>
+					<dependency>
+						<groupId>tk.mybatis</groupId>
+						<artifactId>mapper</artifactId>
+						<version>${mapper.version}</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

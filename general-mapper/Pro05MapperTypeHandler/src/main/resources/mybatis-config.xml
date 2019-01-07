@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+	<typeHandlers>
+		<!-- handler属性：指定自定义类型转换器全类名 -->
+		<!-- javaType属性：指定需要使用“自定义类型转换器”进行类型处理的实体类型 -->
+		<typeHandler 
+			handler="com.atguigu.mapper.handlers.AddressTypeHandler"
+			javaType="com.atguigu.mapper.entities.Address"/>
+			
+		<typeHandler 
+			handler="org.apache.ibatis.type.EnumOrdinalTypeHandler"
+			javaType="com.atguigu.mapper.entities.SeasonEnum"/>
+			
+	</typeHandlers>
+
+</configuration>

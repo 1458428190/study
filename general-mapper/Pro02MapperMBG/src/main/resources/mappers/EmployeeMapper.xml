@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.atguigu.shop.mappers.EmployeeMapper" >
+  <resultMap id="BaseResultMap" type="com.atguigu.shop.entities.Employee" >
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="emp_id" property="empId" jdbcType="INTEGER" />
+    <result column="emp_name" property="empName" jdbcType="VARCHAR" />
+    <result column="emp_salary_apple" property="empSalaryApple" jdbcType="DOUBLE" />
+    <result column="emp_age" property="empAge" jdbcType="INTEGER" />
+  </resultMap>
+</mapper>
