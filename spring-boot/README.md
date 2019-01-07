@@ -3,6 +3,7 @@
 ### 学习地址
 - Spring boot2.1.1官方文档 https://docs.spring.io/spring-boot/docs/2.1.1.RELEASE/reference/htmlsingle/
 - 尚硅谷视频
+- Spring Boot 与 中间件的相关整合 https://www.cnblogs.com/ityouknow/category/914493.html
 
 ### 问题
 - Spring boot + IDEA实现热插拔
