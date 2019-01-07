@@ -41,4 +41,7 @@
 ## SpringCloud
 - 微服务
 
+## 通用Mapper
+- Dao层的快速开发
+
 ###  by: 15767512424@163.com
