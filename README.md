@@ -47,4 +47,7 @@
 ## MongoDB
 - 非关系型文档数据库
 
+## Mybatis-Plus
+- 简化Mybatis的使用
+
 ###  by: 15767512424@163.com
