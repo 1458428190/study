@@ -26,7 +26,7 @@
 		<mapper.version>4.0.0-beta3</mapper.version>
 
 		<!-- MySQL驱动版本号 -->
-		<mysql.version>5.1.37</mysql.version>
+		<mysql.version>8.0.28</mysql.version>
 	</properties>
 
 	<dependencies>
